@@ -1,10 +1,17 @@
+/**
+ * 
+ */
 package introUnit;
 
-public class Senior extends Student {
+/**
+ * @author Student 6
+ *
+ */
+public class Freshman extends Student {
 	
-	private String internship;
+private String internship;
 	
-	public Senior(String name, String internship){
+	public Freshman(String name, String internship){
 		super (name);
 		// need to make a student before adding properties to it
 		this.internship = internship; 
@@ -12,7 +19,7 @@ public class Senior extends Student {
 	
 	public void talk(){
 		super.talk(); // call the super method
-		System.out.println ("... and I am a senior!");
+		System.out.println ("... and I am a Freshie!");
 		System.out.println ("I intern as a " + internship);
 	}
 }

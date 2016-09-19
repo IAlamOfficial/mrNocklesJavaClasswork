@@ -9,9 +9,10 @@ public class Student {
 	public Student(String name){
 		//initialize fields
 		this.name = name;
+		
 	}
 	
 	public void talk(){
-		System.out.println("Hi, my name is "+name);
+		System.out.println("Hi, my name is " + name);
 	}
 }
