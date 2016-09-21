@@ -11,6 +11,13 @@ public class DataTypes {
 	System.out.println((double)3.0+5/2+5*2);
 	System.out.println((int)3.0+5/2+5*2);
 	if(42 ==  42.0) System.out.println("42 equals 42.0");
+	System.out.println(1/2);
+	
+	String ten = "10";
+	String two = "2";
+	if(ten.compareTo(two)>0) System.out.println("10 is greater");
+	else System.out.println("10 is not greater");
+	
 	//System.out.println();
 	
 	double d1 = 4.64; 
