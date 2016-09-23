@@ -1,4 +1,4 @@
-package dataType;
+package chatBox;
 
 import java.util.Scanner;
 
@@ -6,20 +6,17 @@ import java.util.Scanner;
  * @author Student 6
  *
  */
-public class StringPratice {
+public class AlamMain {
 
 	static Scanner input;
 	static String user;
-	//static int lineCount;
 	static boolean inLoop;
 	static String response; 
+	static Topic school;
 	
 	public static void main(String[] args) {
-		createAScanner();
-		//lineCount = 0;
-		//demonstrateStringMethods();
+		createTopics();
 		promptName();
-		// promptInput(); 
 		talkForever();
 	}
 	public static String getInput(){
@@ -77,6 +74,10 @@ public class StringPratice {
 			if(response.indexOf("good") >=0){
 				print("I'm so happy you're good.");
 			}
+			else if(response.indexOf("school")>= 0){
+				inLoop = false; // exit the loop
+				school.talk();
+			}
 			else{
 				print("I'm sorry, I'm dont understand you.");
 			}
@@ -92,25 +93,9 @@ public class StringPratice {
 		print("You typed: " + userInput);
 	}
 
-	public static void createAScanner() {
+	public static void createTopics() {
 		input = new Scanner (System.in);
+		school = new School();
 		
 	}
-//	public static void demonstrateStringMethods(){
-//		String text1 = "Hello World"; //shortcut
-//		String text2 = "Hello ";
-//		String text3 = "World";
-//		String text4 = text2 + text3;
-//		
-//		if (text1.equals(text4)) System.out.println("They are equal");
-//		System.out.println(text1);
-//		System.out.print(text2 +text3);
-//	
-//		String word1 = "Aardvark";
-//		String word2 = "Zyzzva";
-//		
-//		if(word1.compareTo(word2)<0){
-//			System.out.println("Word one is before word two");
-//		}
-	}
-
+}
