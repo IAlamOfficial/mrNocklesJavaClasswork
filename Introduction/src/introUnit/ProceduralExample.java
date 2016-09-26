@@ -15,6 +15,6 @@ public class ProceduralExample {
 		System.out.println("My Name is " + names[1] + ", and I am a " + years[1] + ".");
 		System.out.println("My Name is " + names[2] + ", and I am a " + years[2] + ".");
 	
-		// senior can be a student but a student can't be a senior
+
 	}
 }
