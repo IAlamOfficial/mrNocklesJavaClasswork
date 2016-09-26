@@ -16,6 +16,10 @@ public class AlamMain {
 	
 	public static void main(String[] args) {
 		createTopics();
+		String s1 = "a";
+		String s2 = ".";
+		System.out.print(s1.compareTo(s2));
+		
 		promptName();
 		talkForever();
 	}
@@ -67,11 +71,11 @@ public class AlamMain {
 	public static void talkForever() {
 		inLoop = true;
 		
+		print("Greetings, " + user + " how are you?");
 		while (inLoop){
-			print("Greetings, " + user + " how are you?");
 			response = getInput();
 			
-			if(response.indexOf("good") >=0){
+			if(findKeword(response, "good", 0)){
 				print("I'm so happy you're good.");
 			}
 			else if(response.indexOf("school")>= 0){
@@ -85,6 +89,34 @@ public class AlamMain {
 		
 	}
 	
+	public static boolean findKeword(String searchString, String key, int startIndex) {
+		//delete white space
+		String phrase = searchString.trim();
+		//set all letters to lowercase
+		phrase = phrase.toLowerCase();
+		key = key.toLowerCase();
+		// find position of key
+		int psn = phrase.indexOf(key);
+		// keep look for the word till you find the right context
+		while(psn >= 0){
+			String before = " ";
+			String after = " ";
+			//if the phrase does not end with this word
+			if(psn + key.length() < phrase.length()){
+				after = phrase.substring(psn + key.length(), psn + key.length()+1).toLowerCase();
+			}
+			
+			if (psn > 0){
+				before = phrase.substring(psn-1,psn).toLowerCase();
+			}
+			if(before.compareTo("a") < 0 && after.compareTo("a") < 0){
+				return true;
+			}
+			//in case the key word was not found yet, check the rest of the phrase
+			psn = phrase.indexOf(key,psn+1);
+		}
+		return false;
+	}
 	public static void promptInput() {
 		print(user + " ,try inputting a string!");
 		
