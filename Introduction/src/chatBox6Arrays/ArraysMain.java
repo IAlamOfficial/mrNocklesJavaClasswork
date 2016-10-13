@@ -6,10 +6,37 @@ public class ArraysMain {
 		//this is how you time how quickly a computer processes 
 		long startTime = System.currentTimeMillis();
 		arrayIntroMethod();
+		String[] someStrings = new String[100];
+		
+		changeString(someStrings[34]);
+		changeString(someStrings[99]);
+		
+		populateArray(someStrings);
+		printArray(someStrings);
 		long endTime = System.currentTimeMillis();
-		System.out.println("completed method in " +(endTime-startTime)+ " miliseconds");
+		System.out.println(" \n completed method in " +(endTime-startTime)+ " miliseconds");
 	}
 		
+	private static void changeString(String s) {
+		s = "This string has been changed";
+		
+	}
+
+	private static void printArray(String[] a) {
+		for (String s: a){
+			System.out.print(s);
+		}
+		
+	}
+
+	private static void populateArray(String[] a) {
+		for (int index = 0; index < a.length; index ++){
+			a[index] = "\n value " +(index + 1);
+			
+		}
+		
+	}
+
 	public static void arrayIntroMethod(){	
 		// construct 3 integer arrays
 		// these 2 do the same
@@ -53,7 +80,13 @@ public class ArraysMain {
 			System.out.println(s);
 		}
 		
-		
+		for (int index = 0; index < string2.length; index ++){
+			string2[index] = "value " +(index + 1);
+			
+		}
+		for (String s: string2){
+			System.out.print(s);
+		}
 	}
 
 }
