@@ -16,7 +16,7 @@ public class AlamMain {
 	static Topic like;
 	/* 
 		"helper methods" a method that contribute functionality to another method. He;per methods are very 
-		common when you need to do the smae thing repeated they also help make methods more readable. This 
+		common when you need to do the same thing repeated they also help make methods more readable. This 
 		method is private because it is only used by the method it's helping
 	
 	*/

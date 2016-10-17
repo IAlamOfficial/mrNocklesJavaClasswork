@@ -29,6 +29,20 @@ public class AlamLike implements Topic{
 		}
 		
 	}
+	@Override
+	public boolean isTriggered(String userInput) {
+//		String[] triggers = {"school","class","teacher"};
+		if(AlamMain.findKeyword(userInput, "school", 0) >= 0){
+			return true;
+		}
+		if(AlamMain.findKeyword(userInput, "class", 0) >= 0){
+			return true;
+		}
+		if(AlamMain.findKeyword(userInput, "teacher", 0) >= 0){
+			return true;
+		}
+		return false;
+	}
 
 	
 }
