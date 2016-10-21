@@ -62,6 +62,7 @@ public class ArraysAndArrayList {
 	     * always be sorted in DESCENDING order. Again return the index of the key or return -1
 	     * if the key is not in the array
 	     * 
+	     * 
 	     * Note: You should attempt to write a method that is more efficient that searchUnsorted
 	     * */
 	     return -1;
