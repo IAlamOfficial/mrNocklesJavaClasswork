@@ -1,4 +1,4 @@
-package testingstuff;
+package arrayLessons;
 
 	public class ArrayMethods {
 

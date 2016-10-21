@@ -1,4 +1,4 @@
-package testingstuff;
+package arrayLessons;
 
 import java.util.Scanner;
 

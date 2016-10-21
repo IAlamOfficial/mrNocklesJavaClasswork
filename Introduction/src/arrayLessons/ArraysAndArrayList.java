@@ -1,10 +1,12 @@
-package testingstuff;
+package arrayLessons;
 
 public class ArraysAndArrayList {
 	public static void main(String[] args) {
 	     
 		int listUnsorted[] = {2,4,3,8,0,9,1,7,5,6};
 		int listSorted[] = {0,1,2,3,4,5,6,7,8,9};
+		searchSorted(listSorted, 7);
+		
 		for(int a = 0; a < listSorted.length; a++){
 			System.out.print( (a+1) + ") original is " + listSorted[a] + "\n");
 		}
@@ -12,13 +14,11 @@ public class ArraysAndArrayList {
 		int search = 10;
 		int result = searchUnsorted(listUnsorted, search);
 		
-		int[] result1 = reverseOrder(listSorted);
+		shuffle(listSorted);
+		reverseOrder(listSorted);
 		
 		System.out.println("searchUnsorted method's input was " + search + " and resulted in " + result);
 		
-		for(int b = 0; b < result1.length; b++){
-			System.out.print( (b+1) + ") reversed is " + result1[b] + "\n");
-		}
 		/**
 	      * IMPORTANT NOTE: 
 	      * This homework assignment will be weighted 4x.
@@ -29,7 +29,16 @@ public class ArraysAndArrayList {
 	      * */
 	    }
 	    
-	    public static int searchUnsorted(int[] arrayToSearch, int key){
+	    private static void shuffle(int[] array) {
+		for (int i = 0 ; i < array.length; i ++){
+			int random = (int) (Math.random()*6);
+			swap(array,i,random);
+		}
+		
+		
+	}
+
+		public static int searchUnsorted(int[] arrayToSearch, int key){
 	    
 	    	for(int i = 0; i < arrayToSearch.length; i++){
 	    		if (arrayToSearch[i] == key){
@@ -45,7 +54,9 @@ public class ArraysAndArrayList {
 	     return -1;
 	    }
 	    
-	    public static int searchSorted(int[] sortedArrayToSearch, int key){
+	    public static int searchSorted(int[] searchSorted, int key){
+	    	
+	    	checkHalfway(searchSorted, key, 0 ,searchSorted.length-1);
 	    /**
 	     * this method is exactly like the one above, except the parameter sortedArrayToSearch will
 	     * always be sorted in DESCENDING order. Again return the index of the key or return -1
@@ -56,7 +67,16 @@ public class ArraysAndArrayList {
 	     return -1;
 	    }
 	    
-	    public static boolean isSorted(int[] array){
+	    private static void checkHalfway(int[] array, int searchValue, int begin, int end) {
+			if(searchValue < array[(begin+end+1)/2]){
+				end = ((begin+end+1)/2)-1;
+			}else{
+				begin = (begin+end+1)/2;
+			}
+			
+		}
+
+		public static boolean isSorted(int[] array){
 	    	for(int x = 0; x <array.length; x++){
 	        	if(array[x] >= array[array.length - 1]){
 	        		return false;
@@ -89,19 +109,27 @@ public class ArraysAndArrayList {
 	         return stats;
 	    }
 	    
-	    public static int[] reverseOrder(int[] array){
+	    public static void reverseOrder(int[] array){
 	        int newArray[] = new int [array.length];
 	        int ctr = 0;
 	    	for (int y = array.length - 1; y >= 0; y--){
 	        	newArray[ctr] = array[y];
 	        	ctr++;
 	        }
-	    	return newArray;
+	    	
+	    	swap(array, 0, array.length-1 );
 
 	    	
 	    }
 	    
-	    public static int countDifferences(int[] array1, int[] array2){
+	    private static void swap(int[] array, int i, int j) {
+			int placeHolder = array[j];
+			array[j] = array [i];
+			array[i] = placeHolder;
+			
+		}
+
+		public static int countDifferences(int[] array1, int[] array2){
 	        /**Here, you will write an method that returns the number of values in two arrays 
 	         * that are NOT the same (either in value OR location).
 	         * The arrays ALWAYS have the same length
@@ -117,7 +145,7 @@ public class ArraysAndArrayList {
 	    
 
 	    public static int longestConsecutiveSequence(int[] array1){
-	        /**This method counts the longest consequtive sequence in an array.
+	        /**This method counts the longest consecutive sequence in an array.
 	         * It does not matter where the sequence begins
 	         * If there are no consecutive numbers, the method should return '1'
 	         * 
