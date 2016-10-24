@@ -5,7 +5,7 @@ public class ArraysAndArrayList {
 	     
 		int listUnsorted[] = {2,4,3,8,0,9,1,7,5,6};
 		int listSorted[] = {0,1,2,3,4,5,6,7,8,9};
-		searchSorted(listSorted, 7);
+		cycleThrough(listSorted, 2);
 		
 		for(int a = 0; a < listSorted.length; a++){
 			System.out.print( (a+1) + ") original is " + listSorted[a] + "\n");
@@ -209,6 +209,22 @@ public class ArraysAndArrayList {
 	         * CHALLENGE
 	         * For extra credit, make your method handle NEGATIVE n
 	         * */
+	    	for(int i = 0; i<n; i++){
+	    		cycleOnce(array);
+	    	}
 	    }
+
+		private static void cycleOnce(int[] array) {
+			int x = array[array.length-1];
+			for(int i = array.length-2; i>=0 ; i--){
+				int y = i-1;
+				int z = array[y];
+				array[i] = z;
+			}
+			array[0] = x;
+					
+				
+			
+		}
 
 }

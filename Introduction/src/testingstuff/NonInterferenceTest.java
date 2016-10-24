@@ -4,14 +4,14 @@ public class NonInterferenceTest {
 
     public static void main(String[] args) {
     
-     int sorted[] = {0,1,2,3,4,5,6,7,8,9};
-     double[] unsorted = {9,3,6,5,1,4,8,7,2};
+     double sorted[] = {0,1,2,3,4,5,6,7,8,9};
+     double unsorted[] = {9,3,6,5,1,4,8,7,2};
      
      	//int a = searchUnsorted(unsorted, 4);
      	//int b = searchSorted(sorted, 5);
      	//System.out.println(b+"");
-     	unsorted = getStats(unsorted);
-     	print(unsorted);
+     	double ans[] = getStats(sorted);
+     	print(ans);
     }
     public static void print(double[] array) {
 		for(double a: array){
