@@ -49,43 +49,26 @@ public class NonInterferenceTest {
      * 
      * Note: You should attempt to write a method that is more efficient that searchUnsorted
      * */
-    	int a = sortedArrayToSearch.length;
-    	
-    	return binarySearch(sortedArrayToSearch, a, key);
-    
+    	 int a = sortedArrayToSearch.length;
+
+         if(key <= sortedArrayToSearch[a/2]){
+             for(int i = sortedArrayToSearch[a/2]-1; i<a/2; i++){
+                 if(key == sortedArrayToSearch[i]){
+                     return i;
+                 }
+             }
+         }else{
+             if(key > sortedArrayToSearch[a/2]){
+                 for(int j = 0; j < a/2; j++){
+                     if(key == sortedArrayToSearch[j]){
+                         return j;
+                     }
+                 }
+             }
+         }
+         
+         return -1;
     }
-    
-	    public static int binarySearch(int[] sortedArrayToSearch, int b, int key) {
-			int a = 0;
-	    	boolean inLoop = true;
-	    	int c;
-	    	//System.out.println(sortedArrayToSearch[(b+a)/2]);
-	    	while(inLoop){
-				if(a == b){
-					inLoop = false;
-				}else{
-					c =((a+b)/2);
-					System.out.println("c changed to " + c);
-					if(sortedArrayToSearch[(c)] < key){	
-						b = c;
-						System.out.println("a changed to " + a);
-					}else{
-						a = c+1;
-						System.out.println("b changed to "+ b);
-					}
-					
-				}
-					
-			}
-	    	System.out.println("b ended up at "+ b);
-	    	if(sortedArrayToSearch[b] == key)
-	    	{
-	    		return b;
-	    		
-	    	}else{
-	    		return -1;
-	    	}
-	}
 	public static boolean isSorted(int[] array){
         /**
          * This method takes an in array as a parameter and returns 'true' if the array is already sorted in DESCENDING order
@@ -186,14 +169,16 @@ public class NonInterferenceTest {
          * array = {-6, 16, 10, 9, 1, 5}
          * 
          * */
-		int newArray[] = new int [array.length];
-        int ctr = 0;
-    	for (int y = array.length - 1; y >= 0; y--){
-        	newArray[ctr] = array[y];
-        	ctr++;
+		int[] newArray = new int[array.length];
+		int x = array.length-1;
+        
+        for(int i=0; i<array.length; i++){ 	
+            	newArray[i] = array[x];
+            	x--;
         }
-    	
-    	swap(array, 0, array.length-1 );
+        for(int i=0; i<array.length; i++){
+            array[i] = newArray[i];
+        }
     }
 	
 	private static void swap(int[] array, int i, int j) {
