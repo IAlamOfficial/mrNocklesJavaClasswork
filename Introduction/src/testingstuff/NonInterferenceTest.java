@@ -125,7 +125,8 @@ public class NonInterferenceTest {
 			return ctr;
 		}
 		private static double median(double[] array) {
-	    	int middletop = array.length/2;
+	    	
+			int middletop = array.length/2;
 	    	int middlebottom = (array.length/2)-1;
 	    	double mean = array[middletop] + array[middlebottom]; 
 	    	mean = mean/2; 
