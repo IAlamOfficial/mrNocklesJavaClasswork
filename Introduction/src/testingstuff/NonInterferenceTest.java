@@ -110,7 +110,7 @@ public class NonInterferenceTest {
 	    	double ctr = 0;
 			for(int i = 0; i<array.length; i++){
 				if(array[i] < stats){
-					ctr += 1;
+					ctr ++;
 				}
 			}
 			return ctr;
@@ -119,15 +119,17 @@ public class NonInterferenceTest {
 			double ctr = 0;
 			for(int i = 0; i<array.length; i++){
 				if(array[i] >= stats){
-					ctr += 1;
+					ctr ++;
 				}
 			}
 			return ctr;
 		}
 		private static double median(double[] array) {
-	    	double middle = array.length/2;
-	    	int mid = (int) middle;
-	    	return array[mid];
+	    	int middletop = array.length/2;
+	    	int middlebottom = (array.length/2)-1;
+	    	double mean = array[middletop] + array[middlebottom]; 
+	    	mean = mean/2; 
+	    	return mean;
 	    }
 		private static double min(double[] array) {
 	    	double minVar = array[0];
@@ -199,7 +201,15 @@ public class NonInterferenceTest {
          * countDifferences({1,2,3},{1,3,2}) returns 2, since '2' and '3' are both present, but different locations
          * 
          * */
-         return 0;
+
+    	int ctr = 0;
+    	for(int i = 0; i<array1.length; i++){
+    		if(array1[i] != array2[i]){
+    			ctr++;
+    		}
+    	}
+    	
+         return ctr;
     }
     
 
@@ -243,6 +253,47 @@ public class NonInterferenceTest {
         return null; 
     }
     
+    public static int countUnderBound(double[] arr, double d){
+		int ctr = 0;
+    	for(int i = 0; i< arr.length; i ++){			
+			if(arr[i] < d)
+			{
+				ctr++;
+			}
+		}
+    	
+    	return ctr;
+    	
+    	
+    }
+    public static int[] getSubArray(int[] array, int startIndex, int endIndex){
+		int[] subArray = new int[endIndex - startIndex +1];
+		for(int i = 0; i < subArray.length; i++){
+			subArray[i] = array[startIndex + i];
+		}
+    	
+    	return subArray;
+    	
+    	
+    }
+    
+    public static boolean contains(int[] arr, int[] subArray){
+    	for(int i = 0; i < arr.length; i++){
+    			int j = 0;
+    			//int index = i;
+    			while(j < subArray.length){
+    				if(subArray[j] == arr[i+j] && j == subArray.length-1){
+    					return true;
+    				}else if(subArray[j] != arr[i+j]){
+    					break;
+    				}
+    				j++;
+    			}
+    			
+    	}
+    	
+    	return false;
+    }
     
     public static void cycleThrough(int[] array, int n){
         /** This problem represents people moving through a line.
