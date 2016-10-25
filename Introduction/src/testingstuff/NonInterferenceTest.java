@@ -4,20 +4,27 @@ public class NonInterferenceTest {
 
     public static void main(String[] args) {
     
-     double sorted[] = {0,1,2,3,4,5,6,7,8,9};
+     int[] sorted = {0,1,2,3,4,5,6,7,8,9};
      double unsorted[] = {9,3,6,5,1,4,8,7,2};
      
      	//int a = searchUnsorted(unsorted, 4);
-     	//int b = searchSorted(sorted, 5);
+     	int b = searchSorted(sorted, 5);
      	//System.out.println(b+"");
-     	double ans[] = getStats(sorted);
-     	print(ans);
+     	//double ans[] = getStats(sorted);
+     	//print(ans);
     }
     public static void print(double[] array) {
 		for(double a: array){
 			System.out.println(a+"");
 		}
 		
+	}
+   
+    private static void shuffle(int[] array) {
+		for (int i = 0 ; i < array.length; i ++){
+			int random = (int) (Math.random()*6);
+			swap(array,i,random);
+		}
 	}
 	public static int searchUnsorted(int[] arrayToSearch, int key){
 		/**
@@ -179,8 +186,23 @@ public class NonInterferenceTest {
          * array = {-6, 16, 10, 9, 1, 5}
          * 
          * */
+		int newArray[] = new int [array.length];
+        int ctr = 0;
+    	for (int y = array.length - 1; y >= 0; y--){
+        	newArray[ctr] = array[y];
+        	ctr++;
+        }
+    	
+    	swap(array, 0, array.length-1 );
     }
-    
+	
+	private static void swap(int[] array, int i, int j) {
+		int placeHolder = array[j];
+		array[j] = array [i];
+		array[i] = placeHolder;
+		
+	}
+	
     public static int countDifferences(int[] array1, int[] array2){
         /**Here, you will write an method that returns the number of values in two arrays 
          * that are NOT the same (either in value OR location).
@@ -261,7 +283,5 @@ public class NonInterferenceTest {
          * For extra credit, make your method handle NEGATIVE n
          * */
     }
-    
-
 }
 
