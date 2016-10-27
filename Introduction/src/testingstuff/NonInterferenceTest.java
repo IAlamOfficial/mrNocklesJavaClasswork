@@ -2,7 +2,7 @@ package testingstuff;
 
 public class NonInterferenceTest {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
     }
     public static void print(double[] array) {
 		for(double a: array){
@@ -256,16 +256,15 @@ public class NonInterferenceTest {
     	int longestLength = 0;
         
     	for(int i = 0; i < array1.length; i++){
-    		currentLength = 0;
     		for(int j = 0; j < array2.length; j++){
-                for(int x = 0; array1[i+x] == array2[j+x]; x++){
+    		    currentLength = 0;
+                for(int x = 0; array1[i+x] == array2[j+x] && (i + x) <= array1.length && (j + x) <= array2.length; x++){
                 	currentLength ++;
-                	if(((i + x) >= array1.length) || ((j + x) >= array2.length)){ 
-                		if(longestLength <= currentLength){
-                			longestLength = currentLength;
-                		}
-                		break;
+                    if(longestLength < currentLength){
+                		longestLength = currentLength;
                 	}
+
+        
                 }
             }
     	}
@@ -295,7 +294,6 @@ public class NonInterferenceTest {
 			}
 		}
     
-   // ** 
     public static void cycleThrough(int[] array, int n){
         /** This problem represents people moving through a line.
          * Once they get to the front of the line, they get what they've been waiting for, then they 
@@ -320,20 +318,19 @@ public class NonInterferenceTest {
          * CHALLENGE
          * For extra credit, make your method handle NEGATIVE n
          * */
-    	boolean inLoop = true;
-    	while(inLoop){
+    	//boolean inLoop = true;
+    	while(n>0){
 	    	cycle(array);
 	    	n--;
-	    	if(n <= 0){
-	    		inLoop = false;
-	    	}
+	   // 	if(n < 0){
+	   // 		inLoop = false;
+	   // 	}
     	}
     }
 	private static void cycle(int[] array) {
-		for(int i = 0; i<array.length-2; i++){
-			swap(array,i,(i+1));
+		for(int i=array.length-1; i>-1; i--){
+			swap(array,0,i);
 		}
 		
 	}
-    
 }
