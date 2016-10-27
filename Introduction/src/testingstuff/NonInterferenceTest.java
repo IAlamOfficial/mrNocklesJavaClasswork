@@ -3,28 +3,12 @@ package testingstuff;
 public class NonInterferenceTest {
 
     public static void main(String[] args) {
-    
-     int[] sorted = {0,1,2,3,4,5,6,7,8,9};
-     double unsorted[] = {9,3,6,5,1,4,8,7,2};
-     
-     	//int a = searchUnsorted(unsorted, 4);
-     	int b = searchSorted(sorted, 5);
-     	//System.out.println(b+"");
-     	//double ans[] = getStats(sorted);
-     	//print(ans);
     }
     public static void print(double[] array) {
 		for(double a: array){
 			System.out.println(a+"");
 		}
 		
-	}
-   
-    private static void shuffle(int[] array) {
-		for (int i = 0 ; i < array.length; i ++){
-			int random = (int) (Math.random()*6);
-			swap(array,i,random);
-		}
 	}
 	public static int searchUnsorted(int[] arrayToSearch, int key){
 		/**
@@ -34,7 +18,6 @@ public class NonInterferenceTest {
 	     * */
 		for(int a = 0; a < arrayToSearch.length; a++){
 			if(arrayToSearch[a] == key){
-				//System.out.println(a);
 				return a;
 			}
 		}
@@ -82,7 +65,7 @@ public class NonInterferenceTest {
         return true;
     }
     
-    
+    // **
     public static double[] getStats(double[] array){
         /** 
          * This method return a double[] contain a WHOLE BUNCH of stats
@@ -110,7 +93,7 @@ public class NonInterferenceTest {
 	    	double ctr = 0;
 			for(int i = 0; i<array.length; i++){
 				if(array[i] < stats){
-					ctr ++;
+					ctr += 1;
 				}
 			}
 			return ctr;
@@ -119,19 +102,33 @@ public class NonInterferenceTest {
 			double ctr = 0;
 			for(int i = 0; i<array.length; i++){
 				if(array[i] >= stats){
-					ctr ++;
+					ctr += 1;
 				}
 			}
 			return ctr;
 		}
 		private static double median(double[] array) {
-	    	
-			int middletop = array.length/2;
-	    	int middlebottom = (array.length/2)-1;
-	    	double mean = array[middletop] + array[middlebottom]; 
-	    	mean = mean/2; 
-	    	return mean;
+			int middle = array.length/2;
+		    if (array.length%2 == 1) {
+		        return array[middle];
+		    } else {
+		        return (array[middle-1] + array[middle]) / 2;
+		    }
 	    }
+		private static double[] sort(double[] array) {
+			boolean inLoop = true;  
+			double temp;
+			while (inLoop){
+				inLoop= false; 
+				for(int i = 0; i < array.length -1; i++){
+					if (array[i] < array[i+1]){
+						swapDouble(array,i,(i+1));
+						inLoop = true;    
+					} 
+				} 
+			} 
+			return array;
+		}
 		private static double min(double[] array) {
 	    	double minVar = array[0];
 	    	for(int i = 0; i < array.length-1; i++){
@@ -184,33 +181,31 @@ public class NonInterferenceTest {
         }
     }
 	
+	
 	private static void swap(int[] array, int i, int j) {
 		int placeHolder = array[j];
 		array[j] = array [i];
 		array[i] = placeHolder;
 		
 	}
+	private static void swapDouble(double[] array, int i, int j) {
+		double placeHolder = array[j];
+		array[j] = array [i];
+		array[i] = placeHolder;
+		
+	}
 	
     public static int countDifferences(int[] array1, int[] array2){
-        /**Here, you will write an method that returns the number of values in two arrays 
-         * that are NOT the same (either in value OR location).
-         * The arrays ALWAYS have the same length
-         * Examples:
-         * countDifferences({1,2,3},{1,2,3}) returns 0, since these arrays are exactly the same
-         * countDifferences({3,2,3,4},{3,2,5,4}) returns 1, since '3','2', and '4' are same value, same location, but the 3 and 5 are different
-         * countDifferences({4,4,4,4},{1,2,3,4}) returns 3, since '4' is only at the same index ONE time and three others are not
-         * countDifferences({1,2,3},{1,3,2}) returns 2, since '2' and '3' are both present, but different locations
-         * 
-         * */
-
-    	int ctr = 0;
-    	for(int i = 0; i<array1.length; i++){
+        if(array1.length != array2.length){
+        	return -1;
+        }
+    	int ctr =0;
+    	for(int i = 0; i < array1.length; i++){
     		if(array1[i] != array2[i]){
-    			ctr++;
+    			ctr ++;
     		}
     	}
-    	
-         return ctr;
+        return ctr;
     }
     
 
@@ -224,10 +219,28 @@ public class NonInterferenceTest {
          * longestSequence({0,9,10,11,4,3,8,9}) returns '3', since '9,10,11' is 3 integers long
          * longestSequence({0,9,8,11,4,3,7,9}) returns '1', since there are no consecutive integers
          * */
+    	int currentLength = 0; 
+    	int longestLength = 0;
         
-        return 0;
-    }
+    	for(int i = 0; i < array1.length; i++) {
+            currentLength = 0;
+            for(int j = i; j < array1.length - 1; j++){
+                
+            	if(array1[j] - array1[(j+1)] == -1){
+                    currentLength++;
+                }else{
+                    if(longestLength <= currentLength){
+                        longestLength = currentLength;
+                    }
+                    break;
+                }
+            }
+        }
+        return longestLength + 1;
+        
 
+    }
+    // **
     public static int longestSharedSequence(int[] array1, int[] array2){
         /**This method counts the longest unbroken, shared sequence in TWO arrays.
          * The sequence does NOT have to be a consecutive sequence
@@ -239,8 +252,24 @@ public class NonInterferenceTest {
          *          since the sequence '9,6,3,4,3' is in both arrays and is 5 integers long, it doesn't matter that the sequence begins at different indices 
          * longestSequence({9,6,1,4,3,6,7,9}, {9,6,5,8,3,6,7,0}) returns '3', since the sequence '3,6,7' is in both arrays and is 3 integers long
          * */
+    	int currentLength = 0; 
+    	int longestLength = 0;
         
-        return 0;
+    	for(int i = 0; i < array1.length; i++){
+    		currentLength = 0;
+    		for(int j = 0; j < array2.length; j++){
+                for(int x = 0; array1[i+x] == array2[j+x]; x++){
+                	currentLength ++;
+                	if(((i + x) >= array1.length) || ((j + x) >= array2.length)){ 
+                		if(longestLength <= currentLength){
+                			longestLength = currentLength;
+                		}
+                		break;
+                	}
+                }
+            }
+    	}
+        return longestLength;
     }
 
     public static int[] generateDistinctItemsList(int n){
@@ -251,51 +280,22 @@ public class NonInterferenceTest {
          * contains only entries between 1 and 2n (inclusive) and has no duplicates
          * 
          * */
-        return null; 
+    	int[] list = new int[n];
+    	for(int i = 0; i<n; i++){
+    		list[i] = i+1;
+    	}
+    	shuffle(list);
+        return list; 
     }
-    
-    public static int countUnderBound(double[] arr, double d){
-		int ctr = 0;
-    	for(int i = 0; i< arr.length; i ++){			
-			if(arr[i] < d)
-			{
-				ctr++;
+	    
+    	private static void shuffle(int[] array) {
+			for (int i = 0 ; i < array.length; i ++){
+				int random = (int)(Math.random()*(array.length-1));
+				swap(array,i,random);
 			}
 		}
-    	
-    	return ctr;
-    	
-    	
-    }
-    public static int[] getSubArray(int[] array, int startIndex, int endIndex){
-		int[] subArray = new int[endIndex - startIndex +1];
-		for(int i = 0; i < subArray.length; i++){
-			subArray[i] = array[startIndex + i];
-		}
-    	
-    	return subArray;
-    	
-    	
-    }
     
-    public static boolean contains(int[] arr, int[] subArray){
-    	for(int i = 0; i < arr.length; i++){
-    			int j = 0;
-    			//int index = i;
-    			while(j < subArray.length){
-    				if(subArray[j] == arr[i+j] && j == subArray.length-1){
-    					return true;
-    				}else if(subArray[j] != arr[i+j]){
-    					break;
-    				}
-    				j++;
-    			}
-    			
-    	}
-    	
-    	return false;
-    }
-    
+   // ** 
     public static void cycleThrough(int[] array, int n){
         /** This problem represents people moving through a line.
          * Once they get to the front of the line, they get what they've been waiting for, then they 
@@ -316,9 +316,24 @@ public class NonInterferenceTest {
          * Because after cycling through 49 times, everyone had a chance to go through 6 times, but '3'
          * was able to go through one more time than anyone else
          * 
+         * 
          * CHALLENGE
          * For extra credit, make your method handle NEGATIVE n
          * */
+    	boolean inLoop = true;
+    	while(inLoop){
+	    	cycle(array);
+	    	n--;
+	    	if(n <= 0){
+	    		inLoop = false;
+	    	}
+    	}
     }
+	private static void cycle(int[] array) {
+		for(int i = 0; i<array.length-2; i++){
+			swap(array,i,(i+1));
+		}
+		
+	}
+    
 }
-
