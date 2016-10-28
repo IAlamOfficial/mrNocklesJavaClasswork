@@ -42,6 +42,7 @@ public class CreateRandomArray {
 		}
 		System.out.println("There are " + ctr + " prime numbers");
 	}
+	
 
 	private static int[] addRandom(int[] array, int length) {
 		shuffle(array);
