@@ -3,10 +3,10 @@ package testingstuff;
 public class NonInterferenceTest {
 
 	public static void main(String[] args) {
-		int[] array1 = {1,2,3,4,1,2,3,6,7,8,9,5,3,6};
-		int[] array2 = {2,3,4,5,6,2,3,4,1,2,3,6,2,5};
-		int output = longestSharedSequence(array1,array2);
-		System.out.println(output + "");
+		double[] array1 = {1,2,3,4,1,2,3,6,7,8,9,5,3,6};
+		double[] array2 = {2,3,4,5,6,2,3,4,1,2,3,6,2,5};
+		double[] output = getStats(array1);
+		print(array1);
     }
     public static void print(double[] array) {
 		for(double a: array){
