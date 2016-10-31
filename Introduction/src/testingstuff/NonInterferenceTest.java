@@ -3,6 +3,10 @@ package testingstuff;
 public class NonInterferenceTest {
 
 	public static void main(String[] args) {
+		double[] array1 = {1,2,3,4,1,2,3,6,7,8,9,5,3,6};
+		double[] array2 = {2,3,4,5,6,2,3,4,1,2,3,6,2,5};
+		double[] output = getStats(array1);
+		print(array1);
     }
     public static void print(double[] array) {
 		for(double a: array){
@@ -255,20 +259,42 @@ public class NonInterferenceTest {
     	int currentLength = 0; 
     	int longestLength = 0;
         
-    	for(int i = 0; i < array1.length; i++){
-    		for(int j = 0; j < array2.length; j++){
-    		    currentLength = 0;
-                for(int x = 0; array1[i+x] == array2[j+x] && (i + x) <= array1.length && (j + x) <= array2.length; x++){
-                	currentLength ++;
-                    if(longestLength < currentLength){
-                		longestLength = currentLength;
-                	}
-
-        
-                }
-            }
-    	}
-        return longestLength;
+//    	for(int i = 0; i < array1.length; i++){
+//    		currentLength = 0;
+//    		//int x = 0;
+//    		for(int j = 0; j < array2.length; j++){
+//                for(int x = 0; array1[i+x] == array2[j+x] && (i + x) <= array1.length && (j + x) <= array2.length; x++){
+//                	if(array1[j] - array1[x] == -1){
+//                		currentLength ++;
+//                		x++;
+//                	}else{
+//                		if(longestLength < currentLength){
+//                			longestLength = currentLength;
+//                		}
+//                	}
+//                }
+//            }
+//    	}
+//        return longestLength + 1;
+//    	 int start = 0;
+    	    for(int i = 0; i < array1.length; i++){
+    	    	currentLength = 0;
+    	    	int x = i+currentLength;
+    	    	System.out.println(x + "");
+    	    	for(int j = 0; j < array2.length; j++){
+    	            while(array1[i + currentLength] == array2[j + currentLength]){
+    	                currentLength ++;
+    	                if(((i + currentLength) >= array1.length-1) || ((j + currentLength) >= array2.length-1)){ 
+    	                    break;
+    	                }else{
+    	                	if(longestLength <= currentLength){
+    	                        longestLength = currentLength;
+    	                    }
+    	                }
+    	            }
+    	        }
+    	    }
+    	    return longestLength;
     }
 
     public static int[] generateDistinctItemsList(int n){
