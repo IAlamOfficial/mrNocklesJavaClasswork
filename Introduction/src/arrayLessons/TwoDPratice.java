@@ -33,10 +33,12 @@ public class TwoDPratice {
 		// TODO Auto-generated method stub
 		String[][] array = new String[((picArray.length*4)+1)][((picArray[0].length*4)+1)];
 		for(int y = 0; y < array.length; y++){
+
 			for(int x = 0; x < array[y].length; x++){
-				if(y%4 == 0)array[y][x] = "-";
-				else if (x%4 == 0)array[y][x] = "|";
-				else array[y][x] = " ";
+				array[y][x] = " ";
+				if(y%4 == 0)array[y][x] = "_";
+				if(x%4 == 0)array[y][x] = "|";
+				
 			}
 		}
 		for(int i = 0; i < array.length; i++){
