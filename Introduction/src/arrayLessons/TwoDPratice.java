@@ -12,14 +12,16 @@ public class TwoDPratice {
 	public static Scanner in;
 	
 	public static void main(String[] args){
-		arr2D = new String[5][4];
-		pic = new String[5][4];
+		arr2D = new String[5][5];
+		pic = new String[5][5];
 		for(int row = 0; row < arr2D.length; row++){
 			for(int col = 0; col < arr2D[row].length; col++){
 				arr2D[row][col] = "(" + row + "," + col + ")";
 			}
 			
 		}
+		//HOMEWORK FUNCTION
+		printGrid(pic);
 		// start position
 		i = 2;
 		j = 3;
@@ -27,10 +29,29 @@ public class TwoDPratice {
 		startExploring();
 	}
 
+	private static void printGrid(String[][] picArray) {
+		// TODO Auto-generated method stub
+		String[][] array = new String[((picArray.length*4)+1)][((picArray[0].length*4)+1)];
+		for(int y = 0; y < array.length; y++){
+			for(int x = 0; x < array[y].length; x++){
+				if(y%4 == 0)array[y][x] = "-";
+				else if (x%4 == 0)array[y][x] = "|";
+				else array[y][x] = " ";
+			}
+		}
+		for(int i = 0; i < array.length; i++){
+			for(int j = 0; j < array[i].length; j++){
+				System.out.print(array[i][j]);
+			}
+			System.out.println();
+		}
+		
+	}
+
 	private static void startExploring() {
 		// TODO Auto-generated method stub
 		while(true){
-			printPic(pic);
+			//printPic(pic);
 			System.out.println("You are in room " + arr2D[i][j]);
 			System.out.println("What do you want to do?");
 			String input = in.nextLine();
