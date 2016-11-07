@@ -31,12 +31,12 @@ public class TwoDPratice {
 
 	private static void printGrid(String[][] picArray) {
 		// TODO Auto-generated method stub
-		String[][] array = new String[((picArray.length*4)+1)][((picArray[0].length*4)+1)];
+		String[][] array = new String[((picArray.length*3)+1)][((picArray[0].length*4)+1)];
 		for(int y = 0; y < array.length; y++){
 
 			for(int x = 0; x < array[y].length; x++){
 				array[y][x] = " ";
-				if(y%4 == 0)array[y][x] = "_";
+				if(y%3 == 0)array[y][x] = "_";
 				if(x%4 == 0)array[y][x] = "|";
 				
 			}
