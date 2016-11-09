@@ -1,5 +1,7 @@
 package caveExplorer;
 
+import java.util.Scanner;
+
 public class CaveRoom {
 
 	private String description;
@@ -47,12 +49,17 @@ public class CaveRoom {
 	
 	}
 
+	public static String toDirection(int dir) {
+		String[] directions = {"The North","The East","The South","The West"};
+		return null;
+	}
+
 	public String getContents(){
 		return contents;
 	}
 	
 	public void enter(){
-		contents = " X ";
+		contents = "X";
 	}
 	
 	public void leave(){
@@ -109,8 +116,33 @@ public class CaveRoom {
 	}
 
 	public void interpretInput(String input) {
-		// TODO Auto-generated method stub
-		
+		while(!isValid(input)){
+			System.out.println("You can only enter W,A,S,D");
+			input = CaveExplorer.in.nextLine();
+		}
+		String[] keys = {"w","a","s","d"};
+		int indexFound = -1;
+		for(int i = 0; i < keys.length; i++){
+			if(input.equals(keys[i])){
+				indexFound = 1;
+				break;
+			}
+		}
+		if(borderingRooms[indexFound]!= null && doors[indexFound].isOpen()){
+			CaveExplorer.currentRoom.leave();
+			CaveExplorer.currentRoom = borderingRooms[indexFound];
+			CaveExplorer.currentRoom.enter();
+			CaveExplorer.inventory.updateMap();
+		}
+	}
+
+	private boolean isValid(String input) {
+		String lc = input.toLowerCase().trim();
+		String[] keys = {"w","a","s","d"};
+		for(String key:keys){
+			if(key.equals(lc))return true;
+		}
+		return false;
 	}
 
 }
